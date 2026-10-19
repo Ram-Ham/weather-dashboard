@@ -1,0 +1,181 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --panel: #131f31;
+  --panel2: #1b2a40;
+  --border: #293b53;
+  --text: #f2f6fc;
+  --muted: #a1b3ca;
+  --blue: #80c5ff;
+  --gold: #f3ce7a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.dashboard {
+  width: min(100%, 1100px);
+  margin: auto;
+  padding: 18px;
+}
+
+.topbar, .section-heading, .current-row, footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar { margin-bottom: 16px; }
+h1, h2, p { margin: 0; }
+h1 { font-size: clamp(22px, 3vw, 32px); margin: 5px 0; }
+h2 { font-size: 17px; }
+.eyebrow {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.4px;
+}
+.muted { color: var(--muted); font-size: 12px; }
+.clock {
+  font-size: clamp(27px, 4vw, 43px);
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 15px;
+  min-width: 0;
+  margin-bottom: 12px;
+}
+
+.main-grid .panel { margin-bottom: 0; }
+.current-row { padding: 15px 0; }
+.temperature {
+  font-size: clamp(48px, 7vw, 76px);
+  line-height: 1.1;
+  font-weight: 300;
+}
+.condition { font-size: 16px; margin: 6px 0; }
+.weather-symbol { font-size: 60px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.stat {
+  background: var(--panel2);
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 0;
+}
+.stat span, .stat small { display: block; color: var(--muted); }
+.stat strong {
+  display: block;
+  font-size: clamp(15px, 2vw, 20px);
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.stat small { font-size: 10px; }
+
+.section-heading { margin-bottom: 13px; }
+.hourly {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+.hour {
+  background: var(--panel2);
+  border-radius: 10px;
+  padding: 9px 5px;
+  text-align: center;
+  min-width: 0;
+}
+.hour .time { color: var(--muted); font-size: 11px; }
+.hour .icon { font-size: 23px; margin: 8px 0; }
+.hour .temp { font-size: 18px; font-weight: bold; }
+.hour .rain { color: var(--blue); font-size: 12px; margin-top: 7px; }
+.hour .chance { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.hour.wet { background: #203852; }
+
+.daily {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+.day {
+  text-align: center;
+  background: var(--panel2);
+  border-radius: 10px;
+  padding: 10px 4px;
+  min-width: 0;
+}
+.day .name { font-size: 11px; color: var(--muted); }
+.day .icon { font-size: 22px; margin: 9px 0; }
+.day .high { font-weight: bold; }
+.day .low { color: var(--muted); margin-top: 4px; }
+.day .rain { color: var(--blue); font-size: 11px; margin-top: 8px; }
+.day .chance { color: var(--muted); font-size: 10px; margin-top: 4px; }
+
+button {
+  color: var(--text);
+  background: #25496c;
+  border: 1px solid #41678c;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#radar {
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1b2a40;
+}
+.map-credit { font-size: 10px; color: var(--muted); margin-top: 8px; }
+a { color: var(--blue); }
+footer {
+  color: var(--muted);
+  font-size: 11px;
+  padding: 0 2px 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 650px) {
+  .dashboard { padding: 10px; }
+  .main-grid { grid-template-columns: 1fr; }
+  .daily { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .hourly { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #radar { height: 220px; }
+  .panel { padding: 12px; }
+}
+
+@media (max-height: 520px) and (min-width: 651px) {
+  .dashboard { padding: 10px 14px; }
+  .topbar { margin-bottom: 10px; }
+  .panel { padding: 11px; }
+  .current-row { padding: 8px 0; }
+  .temperature { font-size: 48px; }
+  .weather-symbol { font-size: 42px; }
+  #radar { height: 190px; }
+}
